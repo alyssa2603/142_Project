@@ -275,7 +275,7 @@ void label_setting(GRAPH *G, int **W,int source, int target, int weight_constrai
     for (int i = 0; i<G->num_vertices; i++)
     {
         free(all_labels[i].labels);
-        free(all_labels[i].untreated);
+        free(all_labels[i].treated);
         free(all_labels[i].untreated);
     }
 
@@ -350,7 +350,7 @@ int main() {
 			case '+':
 				scanf(" %d %d %d %d", &u, &v, &l, &w);
 				insertEdge(G, WM, u-1, v-1, l, w); //there's a -1 since we use 0-indexing in the arrays
-				printf("Successfully inserted edge %d %d | length %d weight %d \n", u, v, l, w);
+				// printf("Successfully inserted edge %d %d | length %d weight %d \n", u, v, l, w);
 				break;
 			case '#':
                 

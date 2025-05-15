@@ -79,12 +79,8 @@ void dfs(GRAPH *G, int **weights, int current, int destination, int weight_const
 		if (G->matrix[current][i] > 0 && !visited[i]) {
 			int n_weight = current_weight + weights[current][i];
 			int n_length = current_length + G->matrix[current][i];
-            // If the next node still satsifies the weight constraint, explore the branch
-			if (n_weight <= weight_constraint) {
-				path[path_index] = i;
-				dfs(G, weights, i, destination, weight_constraint, n_weight, n_length,
-					visited, path, path_index + 1, CURRENT_SHORTEST);
-			}
+			path[path_index] = i;
+			dfs(G, weights, i, destination, weight_constraint, n_weight, n_length, visited, path, path_index + 1, CURRENT_SHORTEST);
 		}
 	}
 
