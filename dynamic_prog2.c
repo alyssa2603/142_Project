@@ -2,15 +2,6 @@
 #include <stdlib.h>
 #include "graph2.h"
 
-//Implement your functions here
-/*
-	CREATE GRAPH
-	- allocates memory for the graph
-	- initializes the members of the structure + arrays
-	- returns the newly created graph
-*/
-
-
 
 GRAPH *createGraph(int vertices){
 	// Allocate new Graph 
@@ -32,10 +23,6 @@ GRAPH *createGraph(int vertices){
 }
 
 
-/*
-	INSERT EDGE
-	- plots the adjacent vertices in the adjacency matrix
-*/
 void insertEdge(GRAPH *G, int **W, int u, int v, int l, int w){
 	// Mark adjacent vertices
 	G->matrix[u][v] = l;
@@ -62,12 +49,6 @@ int** createWeights(int vertices){
 }
 
 
-/*
-	CREATE PARENT
-	- returns an integer array dijkstra parent - allocate and initialize your array properly
-	- this will be used in the dijisktra() function to keep track of the parent of a visited vertex
-	- initialize to -1 (no parent yet)
-*/
 int *createParent(GRAPH *G){
 	int* parent = (int*)malloc(sizeof(int)*G->num_vertices);
 
@@ -290,6 +271,24 @@ void label_setting(GRAPH *G, int **W,int source, int target, int weight_constrai
     }
 	printf("\n");
 
+
+    for (int i = 0; i<G->num_vertices; i++)
+    {
+        free(all_labels[i].labels);
+        free(all_labels[i].untreated);
+        free(all_labels[i].untreated);
+    }
+
+    free(all_labels);
+
+    for(int i = 0; i<G->num_vertices; i++)
+    {
+        free(label_parent_tracker[i]);
+        free(vertex_parent_tracker[i]);
+    }
+
+    free(label_parent_tracker);
+    free(vertex_parent_tracker);
 }
 
 /*
@@ -312,7 +311,7 @@ void printMatrix(GRAPH *G){
 	FREE MATRIX
 	- frees the allocated memory for the adjacency matrix
 */
-void freeMatrix(GRAPH *G){
+void freeMatrix(GRAPH *G, int** WM){
 	// Free each row
 	 for ( int i = 0 ; i < G->num_vertices ; i++ ){
 		free(G->matrix[i]);
@@ -320,6 +319,13 @@ void freeMatrix(GRAPH *G){
 
 	// Free the column
 	free(G->matrix);
+
+    for(int i = 0; i<G->num_vertices; i++)
+    {
+        free(WM[i]);
+    }
+
+    free(WM);
 }
 
 int main() {
@@ -347,6 +353,7 @@ int main() {
 				printf("Successfully inserted edge %d %d | length %d weight %d \n", u, v, l, w);
 				break;
 			case '#':
+                
 				label_setting(G, WM, source-1, target-1, weight_constraint);
 				printf("\n");
 				break;
@@ -355,7 +362,7 @@ int main() {
 				printMatrix(G);
 				break;
 			case 'f':
-				freeMatrix(G);
+				freeMatrix(G, WM);
 				break;
 			case 'Q':
 				free(G);

@@ -57,4 +57,4 @@ void printMatrix(GRAPH *G);
 	FREE MATRIX
 	- frees the allocated memory for the adjacency matrix
 */
-void freeMatrix(GRAPH *G);
+void freeMatrix(GRAPH *G, int ** WM);

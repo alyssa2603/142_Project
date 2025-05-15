@@ -57,7 +57,7 @@ int *createVisited(int vertices) {
 
 void dfs(GRAPH *G, int **weights, int current, int destination, int weight_constraint, int current_weight, int current_length,
     int *visited, int *path, int path_index, NODE* CURRENT_SHORTEST) {
-    
+    printf("%d\n", path_index);
     // If current vertex is the destination vertes
 	if (current == destination) {
         //  + the current weight satisfies the constraint and is smaller than the current minimum length
@@ -168,7 +168,10 @@ int main() {
 				break;
 			case '#':
 				printf("\n\n==== SHORTEST WEIGHT-CONSTRAINED PATH ====");
+
 				swcp(G, weights, start-1, end-1, weight_constraint);
+
+
 				printf("\n");
 				break;
 			case 'p':
