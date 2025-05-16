@@ -1,8 +1,3 @@
-// ___  ____    _  _ ____ ___    ____ ___  _ ___    ___ _  _ _ ____    ____ _ _    ____ 
-// |  \ |  |    |\ | |  |  |     |___ |  \ |  |      |  |__| | [__     |___ | |    |___ 
-// |__/ |__|    | \| |__|  |     |___ |__/ |  |      |  |  | | ___]    |    | |___ |___ 
-//
-
 //Structure for the graph
 typedef struct graph_tag {
 	int **matrix; //holder of the adjacency matrix

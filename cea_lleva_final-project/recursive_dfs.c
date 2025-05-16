@@ -57,10 +57,14 @@ int *createVisited(int vertices) {
 
 void dfs(GRAPH *G, int **weights, int current, int destination, int weight_constraint, int current_weight, int current_length,
     int *visited, int *path, int path_index, NODE* CURRENT_SHORTEST) {
-    // printf("%d\n", path_index);
-    // If current vertex is the destination vertes
+    
+	/*
+		For Tracking the path: Track the shortest path that satisfies the weight constraint
+	*/
+
+    // If current vertex is the destination vertex
 	if (current == destination) {
-        //  + the current weight satisfies the constraint and is smaller than the current minimum length
+        //  and if the current weight satisfies the constraint and is smaller than the current minimum length
 		if (current_weight <= weight_constraint && current_length < CURRENT_SHORTEST->length) {
 			CURRENT_SHORTEST->length = current_length;
 			CURRENT_SHORTEST->vertex_count = path_index;
@@ -72,14 +76,21 @@ void dfs(GRAPH *G, int **weights, int current, int destination, int weight_const
 		return;
 	}
 
-    // Mark as visited
+
+	/*
+		DFS Recursive calls
+	*/
+
+    // Mark node as visited
 	visited[current] = 1;
+
 	for (int i = 0; i < G->num_vertices; i++) {
         // For every unvisited adjacent node
 		if (G->matrix[current][i] > 0 && !visited[i]) {
 			int n_weight = current_weight + weights[current][i];
 			int n_length = current_length + G->matrix[current][i];
 			path[path_index] = i;
+			// Explore the branch
 			dfs(G, weights, i, destination, weight_constraint, n_weight, n_length, visited, path, path_index + 1, CURRENT_SHORTEST);
 		}
 	}
@@ -131,11 +142,13 @@ void printMatrix(GRAPH *G) {
 
 // Free memory
 void freeMatrix(GRAPH *G, int **WM) {
+	// Free the graph matrix
 	for (int i = 0; i < G->num_vertices; i++) {
 		free(G->matrix[i]);
 	}
 	free(G->matrix);
 
+	// Free the weight matrix
 	for (int i = 0; i < G->num_vertices; i++) {
 		free(WM[i]);
 	}
