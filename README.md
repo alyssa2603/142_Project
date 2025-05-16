@@ -41,4 +41,4 @@ To compile and run the algorithms with a test file:
 ```bash
 gcc recursive_dfs.c && ./a.out < test_50.in
 ```
-Replace `recursive_dfs.c` with `dynamic_programming.c` to test the dynamic programming implementation, and `test_50.in` with the desired test file (e.g., `test_50.in`).
+Replace `recursive_dfs.c` with `dynamic_programming.c` to test the dynamic programming implementation, and `test_50.in` with the desired test file.
