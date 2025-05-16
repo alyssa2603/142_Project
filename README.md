@@ -34,7 +34,7 @@ The goal is to find the shortest path from s to t such that the total weight of 
 - `test_150.in`: Test file with 150 vertices.
 - `test_200.in`: Test file with 200 vertices.
 
-**Note**: All provided test files contain graphs with a shortest path satisfying the sweight constraint.
+**Note**: All provided test files contain graphs with a shortest path satisfying the weight constraint.
 
 ## Testing
 To compile and run the algorithms with a test file:
