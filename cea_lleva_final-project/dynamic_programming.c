@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "graph2.h"
+#include "graph.h"
 
 
 GRAPH *createGraph(int vertices){

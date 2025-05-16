@@ -1,7 +1,7 @@
 import random
 
-N = 300  # Number of nodes
-E = 952  # Number of edges for performance test
+N = 100  # Number of nodes
+E = 49  # Number of edges for performance test
 MAX_LEN = 20
 MAX_WT = 20
 
@@ -16,7 +16,7 @@ while len(edges) < E:
     if u != v:
         edges.add((u, v))
 
-with open("test22_300.in", "w") as f:
+with open("test22_100.in", "w") as f:
     f.write(f"{N}\n")
     f.write(f"{weight_constraint}\n")
     f.write(f"{start_node}\n")
