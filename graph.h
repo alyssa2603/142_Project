@@ -1,13 +1,29 @@
-// ___  ____    _  _ ____ ___    ____ ___  _ ___    ___ _  _ _ ____    ____ _ _    ____ 
-// |  \ |  |    |\ | |  |  |     |___ |  \ |  |      |  |__| | [__     |___ | |    |___ 
-// |__/ |__|    | \| |__|  |     |___ |__/ |  |      |  |  | | ___]    |    | |___ |___ 
-//
-
 //Structure for the graph
 typedef struct graph_tag {
 	int **matrix; //holder of the adjacency matrix
 	int num_vertices; //holds the vertex count
+    
 } GRAPH;
+
+//define MAX_LABELS (this is the maximum number of label a vertex can take)
+#define MAX_LABELS 100
+
+typedef struct label{
+    int weight;
+    int length;
+} LABEL;
+
+
+//Each vertex will have a node label
+typedef struct node_label{
+    LABEL* labels;
+    int * untreated;
+    int * treated;
+    int label_count;
+    int untreated_count;
+    int treated_count;
+}NODE_LABEL;
+
 
 /*
 	CREATE GRAPH
@@ -24,42 +40,6 @@ GRAPH *createGraph(int vertices);
 */
 void insertEdge(GRAPH *G, int **W, int u, int v, int l, int w);
 
-
-/*
-	CREATE VISITED
-	- returns an integer array called visited - allocate and initialize your array properly
-	- this will be used in the dijkstra() function to mark visited nodes
-	- 1: visited, 0: not visited yet
-*/
-int *createVisited(GRAPH *G);
-
-
-/*
-	CREATE DISTANCE
-	- returns an integer array called distance - allocate and initialize your array properly
-	- this will be used in the dijkstra() function to keep track of the distance of the vertices
-	- initialize to 99999 (maximum distance possible)
-*/
-int *createDistance(GRAPH *G);
-
-
-/*
-	CREATE PARENT
-	- returns an integer array dijkstra parent - allocate and initialize your array properly
-	- this will be used in the dijisktra() function to keep track of the parent of a visited vertex
-	- initialize to -1 (no parent yet)
-*/
-int *createParent(GRAPH *G);
-
-
-/*
-	DIJKSTRA
-	- implements dijkstra's algorithm to find the shortest path from a source to a target
-	- computes for the distance of the path
-	- you may create additional functions for the different operations needed in the dijkstra's algorithm
-*/
-void dijkstra(GRAPH *G, int **W,int source, int target, int weight_constraint);
-
 /*
 	PRINT MATRIX
 	- prints the values of the adjacency matrix
@@ -72,4 +52,4 @@ void printMatrix(GRAPH *G);
 	FREE MATRIX
 	- frees the allocated memory for the adjacency matrix
 */
-void freeMatrix(GRAPH *G);
+void freeMatrix(GRAPH *G, int ** WM);
